@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/static/css/main.5db805e9.chunk.css",
-    "main.js": "/static/js/main.e1ff9edd.chunk.js",
-    "main.js.map": "/static/js/main.e1ff9edd.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.8ad71ac7.js",
-    "runtime-main.js.map": "/static/js/runtime-main.8ad71ac7.js.map",
-    "static/js/2.82517cbd.chunk.js": "/static/js/2.82517cbd.chunk.js",
-    "static/js/2.82517cbd.chunk.js.map": "/static/js/2.82517cbd.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.df2aef6434242ebfab6f55e0f46b1825.js": "/precache-manifest.df2aef6434242ebfab6f55e0f46b1825.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/main.5db805e9.chunk.css.map": "/static/css/main.5db805e9.chunk.css.map",
-    "static/js/2.82517cbd.chunk.js.LICENSE.txt": "/static/js/2.82517cbd.chunk.js.LICENSE.txt"
+    "main.css": "/dolly/static/css/main.5db805e9.chunk.css",
+    "main.js": "/dolly/static/js/main.c9ab3429.chunk.js",
+    "main.js.map": "/dolly/static/js/main.c9ab3429.chunk.js.map",
+    "runtime-main.js": "/dolly/static/js/runtime-main.c4d14f32.js",
+    "runtime-main.js.map": "/dolly/static/js/runtime-main.c4d14f32.js.map",
+    "static/js/2.82517cbd.chunk.js": "/dolly/static/js/2.82517cbd.chunk.js",
+    "static/js/2.82517cbd.chunk.js.map": "/dolly/static/js/2.82517cbd.chunk.js.map",
+    "index.html": "/dolly/index.html",
+    "precache-manifest.9cbb0ec3ad15c3259f9ece7a43af994e.js": "/dolly/precache-manifest.9cbb0ec3ad15c3259f9ece7a43af994e.js",
+    "service-worker.js": "/dolly/service-worker.js",
+    "static/css/main.5db805e9.chunk.css.map": "/dolly/static/css/main.5db805e9.chunk.css.map",
+    "static/js/2.82517cbd.chunk.js.LICENSE.txt": "/dolly/static/js/2.82517cbd.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.8ad71ac7.js",
+    "static/js/runtime-main.c4d14f32.js",
     "static/js/2.82517cbd.chunk.js",
     "static/css/main.5db805e9.chunk.css",
-    "static/js/main.e1ff9edd.chunk.js"
+    "static/js/main.c9ab3429.chunk.js"
   ]
 }
