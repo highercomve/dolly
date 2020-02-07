@@ -9,7 +9,7 @@ const DEVS_URL = `${API_URL}/devices`
 const SUMMARY_URL = `${API_URL}/trails/summary`
 
 const trailsUrl = (deviceId) =>
-  `${API_URL}/trails/${deviceId}/steps?progress.status={%22$ne%22:%22%22}`
+  `${API_URL}/trails/${deviceId}/steps`
 
 const tailsDeviceSummaryUrl = (id) =>
   `${API_URL}/trails/${id}/summary`
@@ -27,4 +27,4 @@ export const setDeviceMetadata = async (token, id, meta, type = 'user-meta') =>
   _putJSON(`${DEVS_URL}/${id}/${type}`, token, meta)
 
 export const getDeviceTrails = async (token, id) =>
-  _getJSON(trailsUrl(id), token)
+  _getJSON(trailsUrl(id)+'?progress.status={%22$ne%22:%22%22}', token)

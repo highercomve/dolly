@@ -1,11 +1,9 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import Link from '@material-ui/core/Link';
+import Container from '@material-ui/core/Container';
 
 export const useStyles = makeStyles(theme => ({
   icon: {
@@ -13,7 +11,7 @@ export const useStyles = makeStyles(theme => ({
   },
   heroContent: {
     backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(8, 0, 6),
+    padding: theme.spacing(2, 0, 6),
   },
   heroButtons: {
     marginTop: theme.spacing(8),
@@ -33,6 +31,24 @@ export const useStyles = makeStyles(theme => ({
   cardContent: {
     flexGrow: 1,
   },
+  linearProgress: {
+    width: '100%',
+    '& > * + *': {
+      marginTop: theme.spacing(2),
+    },
+  },
+  flex: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
+  vertialSpace: {
+    marginBottom: theme.spacing(2),
+  },
   footer: {
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(6),
@@ -43,7 +59,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
+      <Link color="inherit" href="https://www.github.com/highercomve/dolly">
         Sergio Marin
       </Link>{' '}
       {new Date().getFullYear()}
@@ -58,25 +74,23 @@ export default function MainLayout ({ children }) {
   return (
     <React.Fragment>
       <CssBaseline />
-      <AppBar position="relative">
-        <Toolbar>
-          <CloudUploadIcon className={classes.icon} />
-          <Typography variant="h6" color="inherit" noWrap>
-            Pantahub Cloner
-          </Typography>
-        </Toolbar>
-      </AppBar>
+      <header>
+        <Container maxWidth="md">
+          <img src={process.env.PUBLIC_URL + '/logo.png'} alt="Dolly" />
+          {/* <Typography variant="h3" color="inherit" noWrap>
+            Dolly
+          </Typography> */}
+        </Container>
+      </header>
       <main>
         {children}
       </main>
-      {/* Footer */}
       <footer className={classes.footer}>
         <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
           Pantahub cloner is a thirdpary opensource project
         </Typography>
         <Copyright />
       </footer>
-      {/* End footer */}
     </React.Fragment>
   )
 }

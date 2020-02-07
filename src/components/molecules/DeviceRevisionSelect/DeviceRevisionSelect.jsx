@@ -13,28 +13,32 @@ const useStyles = makeStyles({
   },
 });
 
-export default function DevicesAutoComplete({ value, defaultClasses = {}, devices, label, onChange = () => null }) {
+export default function DeviceRevisionSelect({ device, revision, label, onChange = () => null }) {
   const classes = useStyles();
+
+  if (!device) {
+    return null
+  }
 
   return (
     <Autocomplete
       clearOnEscape
-      id="devices-select"
+      autoHighlight
+      id="devices-revision-select"
       style={{ width: '100%' }}
-      options={devices}
-      value={value}
+      options={device.revisions}
       classes={{
-        ...defaultClasses,
         option: classes.option,
       }}
-      autoHighlight
-      getOptionLabel={option => option['device-nick']}
       onChange={(_, newValue) => {
         onChange(newValue);
       }}
+      value={revision}
+      getOptionLabel={option => `${option.rev} (${option['state-sha']})`}
       renderOption={option => (
         <React.Fragment>
-          {option['device-nick']}
+          <span>{option.rev}</span>
+          {option['commit-msg']}
         </React.Fragment>
       )}
       renderInput={params => (
