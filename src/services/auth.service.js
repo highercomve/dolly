@@ -8,7 +8,7 @@ const AUTH_STATUS = `${API_URL}/auth/auth_status`
 const OAUTH_AUTH_URL = `${process.env.REACT_APP_PH_URL}/oauth2/authorize`
 const OAUTH_CLIENT_ID = process.env.REACT_APP_OAUTH_CLIENT_ID
 const OAUTH_DEFAULT_SCOPE = process.env.REACT_APP_OAUTH_DEFAULT_SCOPE
-const redirectToDefault = () => `${location.origin}/`
+const redirectToDefault = () => `${location.href}`
 
 export const JWT_NAME = '_ph_token'
 

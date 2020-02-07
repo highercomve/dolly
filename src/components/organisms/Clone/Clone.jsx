@@ -8,7 +8,8 @@ import FormGroup from '@material-ui/core/FormGroup'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import LinearProgress from '@material-ui/core/LinearProgress'
 import Button from '@material-ui/core/Button'
-import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
+import DoubleArrowIcon from '@material-ui/icons/DoubleArrow'
+import Alert from '@material-ui/lab/Alert'
 
 import { useStyles } from "../../layouts/Main"
 import { STATUS as UserStatus } from '../../../store/auth/reducer'
@@ -47,7 +48,7 @@ function Clone ({
   }, [devices, devices.status, getDevices, user, user.status])
 
   useEffect(() => {
-    if (devices.status === DevicesStatus.IN_PROGRESS || devices.status === DevicesStatus.CLONING || devices.status === DevicesStatus.WAITING_DEPLOY) {
+    if (devices.status === DevicesStatus.IN_PROGRESS || devices.status === DevicesStatus.CLONING.IN_PROGRESS || devices.status === DevicesStatus.WAITING_DEPLOY) {
       setLoading(true)
     } else {
       setLoading(false)
@@ -69,7 +70,7 @@ function Clone ({
         </Typography>
         <div className={classes.heroButtons}>
           <Grid container spacing={2} justify="center">
-            <Grid item md={5}>
+            <Grid item md={5} xs={12}>
               <DevicesAutoComplete
                 value={devices.source}
                 devices={Object.values(devices.list)}
@@ -101,10 +102,10 @@ function Clone ({
                 />
               </FormGroup>
             </Grid>
-            <Grid item>
-              <DoubleArrowIcon style={{ marginTop: '10px' }} fontSize="large"/>
+            <Grid item md={2} xs={12}>
+              <DoubleArrowIcon className="clone-icon" fontSize="large"/>
             </Grid>
-            <Grid item md={5}>
+            <Grid item md={5} xs={12}>
               <DevicesAutoComplete
                 value={devices.destination}
                 devices={Object.values(devices.list)}
@@ -113,9 +114,12 @@ function Clone ({
               />
             </Grid>
             <Grid item md={12}>
-              {loading
-                ? <div className={classes.linearProgress} ><LinearProgress /> </div>
-                : <div className={classes.flex}>
+              
+              {devices.status !== DevicesStatus.CLONING.SUCCESS && loading && (
+                <div className={classes.linearProgress} ><LinearProgress /> </div>
+              )}
+              {devices.status !== DevicesStatus.CLONING.SUCCESS && !loading && (
+                <div className={classes.flex}>
                   <Button
                     variant="contained"
                     color="default"
@@ -135,7 +139,10 @@ function Clone ({
                     onConfirm={cloneDevice}
                   />
                 </div>
-              }
+              )}
+              {devices.status === DevicesStatus.CLONING.SUCCESS && (
+                <Alert severity="success">Your device has been cloned!</Alert>
+              )}
             </Grid>
           </Grid>
         </div>

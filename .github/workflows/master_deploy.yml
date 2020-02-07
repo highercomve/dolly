@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [8.x, 10.x, 12.x]
+        node-version: [12.x]
     steps:
     - uses: actions/checkout@v1
     - name: Use Node.js ${{ matrix.node-version }}
@@ -16,11 +16,12 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: Install Packages
-      run: NODE_ENV=production npm install
+      run: npm install
     - name: Deploy to GH Pages
+      env:
+        PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
       run: |
-        cp env.production .env.production
         git config --global user.email "higher.vnf@gmail.com"
         git config --global user.name "Sergio Marin"
-        git remote set-url origin https://${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}/.git
+        git remote set-url origin https://highercomve:${PERSONAL_TOKEN}@github.com/highercomve/dolly.git
         npm run deploy
