@@ -4,6 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Link from '@material-ui/core/Link';
 import Container from '@material-ui/core/Container';
+import LogoutButton from '../molecules/LogoutButton/LogoutButton';
 
 export const useStyles = makeStyles(theme => ({
   icon: {
@@ -74,9 +75,10 @@ export default function MainLayout ({ children }) {
   return (
     <React.Fragment>
       <CssBaseline />
+      <LogoutButton />
       <header>
         <Container maxWidth="md">
-          <img src={process.env.PUBLIC_URL + '/logo.png'} alt="Dolly" />
+          <img src={process.env.PUBLIC_URL + '/logo.png'} alt="Dolly" height="100px" />
           {/* <Typography variant="h3" color="inherit" noWrap>
             Dolly
           </Typography> */}

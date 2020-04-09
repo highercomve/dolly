@@ -48,7 +48,7 @@ const ActionMapper = {
     ...decodeJwt(action.payload),
     token: action.payload,
   }),
-  [Types.AUTH_CLEAR_TOKEN]: (state, action) => initialState
+  [Types.AUTH_CLEAR_TOKEN]: (state, action) => ({ ...initialState, token: null })
 }
 
 export default function authReducer (state = initialState, action) {

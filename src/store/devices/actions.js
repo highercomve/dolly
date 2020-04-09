@@ -70,9 +70,14 @@ export const getDevices = () => async (dispatch, getState) => {
       const devicesResponse = await Service.getDevices(state.auth.token)
       const devices = await Promise.all(
         devicesResponse.json.map(async (d) => {
-          const trails = await Service.getDeviceTrails(state.auth.token, d.deviceid)
-          d.revisions = trails.json.sort((a, b) => a.rev < b.rev)
-          return d
+          try {
+            const trails = await Service.getDeviceTrails(state.auth.token, d.deviceid)
+            d.revisions = trails.json.sort((a, b) => a.rev < b.rev)
+            return d
+          } catch (e) {
+            console.debug(e)
+            return d
+          }
         })
       )
       return {

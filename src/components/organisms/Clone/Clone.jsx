@@ -62,8 +62,8 @@ function Clone ({
   return (
     <div className={classes.heroContent}>
       <Container maxWidth="md">
-        <Typography component="h4" variant="h2" align="center" color="textPrimary" gutterBottom>
-          Welcome, {user.nick} to Dolly!
+        <Typography component="h4" variant="h4" align="center" color="textPrimary" gutterBottom>
+          Welcome, {user.nick}
         </Typography>
         <Typography variant="h5" align="center" color="textSecondary" paragraph>
           Lets start cloning devices, this feature works with public devices or personal devices.
