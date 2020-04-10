@@ -23,5 +23,5 @@ jobs:
       run: |
         git config --global user.email "higher.vnf@gmail.com"
         git config --global user.name "Sergio Marin"
-        git remote set-url origin https://${PERSONAL_TOKEN}@github.com/highercomve/dolly.git
+        git remote add origin https://highercomve:${PERSONAL_TOKEN}@github.com/highercomve/dolly.git
         npm run deploy
