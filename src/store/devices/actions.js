@@ -3,6 +3,7 @@ import * as Service from '../../services/devices.service'
 import { buildBasicActions } from "../../lib/redux.helper"
 import { processService } from "../../lib/api.helper"
 import { catchError } from '../general-errors/actions'
+import { getStatePlatformsFiltered } from '../../lib/device.helper'
 
 const getDevicesActions = buildBasicActions(Types, Types.DEVICES_GET_ALL)
 const getDeviceActions = buildBasicActions(Types, Types.DEVICES_GET)
@@ -36,6 +37,11 @@ const validateForm = (state) => {
 
   return errors
 }
+
+export const setPlatformToClone = (payload) => ({
+  type: Types.DEVICE_SET_PLATFORM_TO_CLONE,
+  payload,
+})
 
 export const setDestination = (payload) => ({
   type: Types.DEVICES_SET_DESTINATION,
@@ -122,10 +128,11 @@ export const cloneDevice = () => async (dispatch, getState) => {
   }
 
   const payload = {
-    state: state.devices.selectedRevision.state,
+    state: getStatePlatformsFiltered(state.devices.selectedRevision.state, state.devices.platformToClone),
     rev: -1,
     'commit-msg': `Cloned from device ${state.devices.source['device-nick']} rev (${state.devices.selectedRevision.rev})`
   }
+
   const newTrail = await processService(
     Service.postTrails.bind(null, state.auth.token, state.devices.destination.deviceid, payload),
     (resp) => dispatch(cloneDeviceActions.success(resp)),

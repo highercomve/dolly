@@ -20,3 +20,5 @@ export const DEVICES_SET_CLONE_USER_META = 'devices/set/clone-user-meta'
 export const DEVICES_SET_DESTINATION = 'devices/set/destination'
 export const DEVICES_CLEAN_FORM = 'devices/clear/form'
 export const DEVICE_SET_FORM_ERRORS = 'devices/set/form-errors'
+
+export const DEVICE_SET_PLATFORM_TO_CLONE = 'devices/set/platform-to-clone'

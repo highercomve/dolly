@@ -21,6 +21,7 @@ export const initialState = {
   destination: null,
   selectedRevision: null,
   cloneUserMeta: false,
+  platformToClone: null,
   formErrors: {},
 }
 
@@ -40,6 +41,10 @@ const ActionMapper = {
     ...s,
     source: a.payload,
     selectedRevision: a.payload.revisions.find(r => r.rev === a.payload.revision)
+  }),
+  [Types.DEVICE_SET_PLATFORM_TO_CLONE]: (state, action) => ({
+    ...state,
+    platformToClone: action.payload,
   }),
   [Types.DEVICES_CLEAN_FORM]: (state) => ({
     ...state,

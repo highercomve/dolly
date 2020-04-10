@@ -23,9 +23,12 @@ import {
   setCloneUserMeta,
   cleanForm,
   setSelectedRevision,
-  cloneDevice
+  cloneDevice,
+  setPlatformToClone
 } from '../../../store/devices/actions'
 import DeviceRevisionSelect from '../../molecules/DeviceRevisionSelect/DeviceRevisionSelect'
+import Loader from '../../atoms/Loader/Loader'
+import DevicePlatformSelect from '../../molecules/DevicePlatformSelect/DevicePlatformSelect'
 
 function Clone ({
   user,
@@ -36,7 +39,8 @@ function Clone ({
   setCloneUserMeta,
   cleanForm,
   setSelectedRevision,
-  cloneDevice
+  cloneDevice,
+  setPlatformToClone
 }) {
   const classes = useStyles()
   const [loading, setLoading] = useState(false)
@@ -48,12 +52,30 @@ function Clone ({
   }, [devices, devices.status, getDevices, user, user.status])
 
   useEffect(() => {
-    if (devices.status === DevicesStatus.IN_PROGRESS || devices.status === DevicesStatus.CLONING.IN_PROGRESS || devices.status === DevicesStatus.WAITING_DEPLOY) {
+    if (devices.status === DevicesStatus.CLONING.IN_PROGRESS || devices.status === DevicesStatus.WAITING_DEPLOY) {
       setLoading(true)
     } else {
       setLoading(false)
     }
   }, [devices, devices.status])
+  
+  if (devices.status === DevicesStatus.IN_PROGRESS) {
+    return (
+      <div className={classes.heroContent}>
+        <Container maxWidth="md">
+          <Typography component="h4" variant="h4" align="center" color="textPrimary" gutterBottom>
+            Welcome, {user.nick}
+          </Typography>
+          <Typography variant="h5" align="center" color="textSecondary" paragraph>
+            Please wait a second, first we need to load your devices.
+          </Typography>
+          <div className={classes.flex} style={{height: '200px'}}>
+            <Loader size="lg" />
+          </div>
+        </Container>
+      </div>
+    )
+  }
 
   if (devices.list.length <= 0) {
     return null
@@ -85,22 +107,30 @@ function Clone ({
                 label="Choose revision source"
                 onChange={setSelectedRevision}
               />
-              <FormGroup justify="center">
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      id="user-meta"
-                      color="primary"
-                      checked={devices.cloneUserMeta}
-                      onChange={(e) => setCloneUserMeta(e.target.checked) }
-                      inputProps={{
-                        'aria-label': 'Clone all user-meta data (only if you are the owner)'
-                      }}
-                    />
-                  }
-                  label="Clone all user-meta data (only device owner)"
-                />
-              </FormGroup>
+              <DevicePlatformSelect
+                device={devices.source}
+                label="Select platforms to be cloned"
+                revision={devices.selectedRevision}
+                onChange={setPlatformToClone}
+              />
+              {devices.selectedRevision && (
+                <FormGroup justify="center">
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        id="user-meta"
+                        color="primary"
+                        checked={devices.cloneUserMeta}
+                        onChange={(e) => setCloneUserMeta(e.target.checked) }
+                        inputProps={{
+                          'aria-label': 'Clone all user-meta data (only if you are the owner)'
+                        }}
+                      />
+                    }
+                    label="Clone all user-meta data (only device owner)"
+                  />
+                </FormGroup>
+              )}
             </Grid>
             <Grid item md={2} xs={12}>
               <DoubleArrowIcon className="clone-icon" fontSize="large"/>
@@ -114,7 +144,6 @@ function Clone ({
               />
             </Grid>
             <Grid item md={12}>
-              
               {devices.status !== DevicesStatus.CLONING.SUCCESS && loading && (
                 <div className={classes.linearProgress} ><LinearProgress /> </div>
               )}
@@ -163,6 +192,7 @@ export default connect(
     setCloneUserMeta,
     cleanForm,
     setSelectedRevision,
-    cloneDevice
+    cloneDevice,
+    setPlatformToClone
   }
 )(Clone)
