@@ -1,20 +1,20 @@
-import React from 'react';
-import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/lab/Autocomplete';
-import { makeStyles } from '@material-ui/core/styles';
+import React from 'react'
+import TextField from '@material-ui/core/TextField'
+import Autocomplete from '@material-ui/lab/Autocomplete'
+import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles({
   option: {
     fontSize: 15,
     '& > span': {
       marginRight: 10,
-      fontSize: 18,
-    },
-  },
-});
+      fontSize: 18
+    }
+  }
+})
 
-export default function DeviceRevisionSelect({ device, revision, label, onChange = () => null }) {
-  const classes = useStyles();
+export default function DeviceRevisionSelect ({ device, revision, label, onChange = () => null }) {
+  const classes = useStyles()
 
   if (!device) {
     return null
@@ -28,10 +28,10 @@ export default function DeviceRevisionSelect({ device, revision, label, onChange
       style={{ width: '100%' }}
       options={device.revisions}
       classes={{
-        option: classes.option,
+        option: classes.option
       }}
       onChange={(_, newValue) => {
-        onChange(newValue);
+        onChange(newValue)
       }}
       value={revision}
       getOptionLabel={option => `${option.rev} (${option['state-sha']})`}
@@ -49,10 +49,10 @@ export default function DeviceRevisionSelect({ device, revision, label, onChange
           fullWidth
           inputProps={{
             ...params.inputProps,
-            autoComplete: 'Device nick', // disable autocomplete and autofill
+            autoComplete: 'Device nick' // disable autocomplete and autofill
           }}
         />
       )}
     />
-  );
+  )
 }

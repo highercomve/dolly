@@ -36,7 +36,7 @@ export function useInterval (callback, delay = REFRESH_RATE) {
       }
     }
   }, [delay])
-  
+
   return {
     removeInterval,
     tick

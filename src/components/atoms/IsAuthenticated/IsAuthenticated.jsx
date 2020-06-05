@@ -13,10 +13,9 @@ function IsAuthenticated ({ children, status, token, Login, GetUser, SaveTokenAn
       SaveTokenAndRedirect(hash)
       return
     }
-    
+
     if (!hash && !token) {
       Login()
-      return
     }
   }, [token, SaveTokenAndRedirect, Login])
 
@@ -39,9 +38,9 @@ function IsAuthenticated ({ children, status, token, Login, GetUser, SaveTokenAn
 }
 
 export default connect(
-  (state) => ({ 
+  (state) => ({
     token: state.auth.token,
-    status: state.auth.status,
+    status: state.auth.status
   }),
   {
     Login,

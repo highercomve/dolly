@@ -1,24 +1,24 @@
 /* eslint-disable no-restricted-globals */
 
 import * as Types from './types'
-import { buildBasicActions } from "../../lib/redux.helper"
-import { processService } from "../../lib/api.helper"
-import { catchError } from "../general-errors/actions"
-import { goToAuthorization, removeToken, getTokenFromImplicit, getUserData, setToken } from "../../services/auth.service"
+import { buildBasicActions } from '../../lib/redux.helper'
+import { processService } from '../../lib/api.helper'
+import { catchError } from '../general-errors/actions'
+import { goToAuthorization, removeToken, getTokenFromImplicit, getUserData, setToken } from '../../services/auth.service'
 
 const getUserActions = buildBasicActions(Types, Types.AUTH_USER_GET)
 
 export const Login = () => {
   goToAuthorization()
   return {
-    type: Types.AUTH_CLEAR_TOKEN,
+    type: Types.AUTH_CLEAR_TOKEN
   }
 }
 
 export const Logout = () => {
   removeToken()
   return {
-    type: Types.AUTH_CLEAR_TOKEN,
+    type: Types.AUTH_CLEAR_TOKEN
   }
 }
 

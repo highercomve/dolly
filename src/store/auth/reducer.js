@@ -1,4 +1,3 @@
-/* global localStorage */
 import * as Types from './types'
 import jwtDecode from 'jwt-decode'
 import { JWT_NAME } from '../../services/auth.service'
@@ -46,7 +45,7 @@ const ActionMapper = {
   [Types.AUTH_SAVE_TOKEN]: (state, action) => ({
     ...state,
     ...decodeJwt(action.payload),
-    token: action.payload,
+    token: action.payload
   }),
   [Types.AUTH_CLEAR_TOKEN]: (state, action) => ({ ...initialState, token: null })
 }

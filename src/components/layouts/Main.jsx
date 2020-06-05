@@ -1,42 +1,42 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Link from '@material-ui/core/Link';
-import Container from '@material-ui/core/Container';
-import LogoutButton from '../molecules/LogoutButton/LogoutButton';
+import { makeStyles } from '@material-ui/core/styles'
+import Typography from '@material-ui/core/Typography'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import Link from '@material-ui/core/Link'
+import Container from '@material-ui/core/Container'
+import LogoutButton from '../molecules/LogoutButton/LogoutButton'
 
 export const useStyles = makeStyles(theme => ({
   icon: {
-    marginRight: theme.spacing(2),
+    marginRight: theme.spacing(2)
   },
   heroContent: {
     backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(2, 0, 6),
+    padding: theme.spacing(2, 0, 6)
   },
   heroButtons: {
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(8)
   },
   cardGrid: {
     paddingTop: theme.spacing(8),
-    paddingBottom: theme.spacing(8),
+    paddingBottom: theme.spacing(8)
   },
   card: {
     height: '100%',
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'column'
   },
   cardMedia: {
-    paddingTop: '56.25%', // 16:9
+    paddingTop: '56.25%' // 16:9
   },
   cardContent: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   linearProgress: {
     width: '100%',
     '& > * + *': {
-      marginTop: theme.spacing(2),
-    },
+      marginTop: theme.spacing(2)
+    }
   },
   flex: {
     display: 'flex',
@@ -44,19 +44,19 @@ export const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     alignItems: 'center',
     '& > *': {
-      margin: theme.spacing(1),
-    },
+      margin: theme.spacing(1)
+    }
   },
   vertialSpace: {
-    marginBottom: theme.spacing(2),
+    marginBottom: theme.spacing(2)
   },
   footer: {
     backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(6),
-  },
-}));
+    padding: theme.spacing(6)
+  }
+}))
 
-function Copyright() {
+function Copyright () {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
@@ -66,11 +66,11 @@ function Copyright() {
       {new Date().getFullYear()}
       {'.'}
     </Typography>
-  );
+  )
 }
 
 export default function MainLayout ({ children }) {
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <React.Fragment>
@@ -89,7 +89,7 @@ export default function MainLayout ({ children }) {
       </main>
       <footer className={classes.footer}>
         <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-          Pantahub cloner is a thirdpary opensource project
+          Pantahub cloner is a thirdparty opensource project
         </Typography>
         <Copyright />
       </footer>

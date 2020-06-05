@@ -30,18 +30,18 @@ export function buildBasicReducers (STATES, types, typePrefix, successPrefix, fa
     [FAILURE]: (state, action) => ({
       ...state,
       [`${failurePrefix}`]: action.error,
-      status: STATES.FAILURE,
+      status: STATES.FAILURE
     }),
     [SUCCESS]: (state, action) => {
       return !successPrefix
         ? {
           ...state,
           ...successCb(state, action, successPrefix),
-          status: STATES.SUCCESS,
+          status: STATES.SUCCESS
         } : {
           ...state,
           [successPrefix]: successCb(state, action, successPrefix),
-          status: STATES.SUCCESS,
+          status: STATES.SUCCESS
         }
     }
   }

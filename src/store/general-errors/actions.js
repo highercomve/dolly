@@ -7,7 +7,7 @@ export const catchError = (apiError, cb) => (dispatch) => {
 }
 
 export function setError (type, error) {
-  if ( type === 401) {
+  if (type === 401) {
     return Login()
   }
   return {

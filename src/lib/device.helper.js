@@ -1,19 +1,19 @@
 
-export function getStatePlatforms(state, defaultSelection = false) {
+export function getStatePlatforms (state, defaultSelection = false) {
   return Object.keys(state).reduce((acc, key, index) => {
-    if (key.indexOf("src.json") >= 0) {
-      const name = key.replace("/src.json", "")
+    if (key.indexOf('src.json') >= 0) {
+      const name = key.replace('/src.json', '')
       acc[name] = {
         ...state[key],
         selected: defaultSelection,
-        name, 
+        name
       }
     }
     return acc
   }, {})
 }
 
-export function getStatePlatformsFiltered(state, platformsSelected = {}) {
+export function getStatePlatformsFiltered (state, platformsSelected = {}) {
   const newState = { ...state }
   Object.keys(platformsSelected).forEach((platformKey) => {
     if (platformsSelected[platformKey] === false) {

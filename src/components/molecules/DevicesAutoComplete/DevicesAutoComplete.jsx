@@ -1,20 +1,20 @@
-import React from 'react';
-import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/lab/Autocomplete';
-import { makeStyles } from '@material-ui/core/styles';
+import React from 'react'
+import TextField from '@material-ui/core/TextField'
+import Autocomplete from '@material-ui/lab/Autocomplete'
+import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles({
   option: {
     fontSize: 15,
     '& > span': {
       marginRight: 10,
-      fontSize: 18,
-    },
-  },
-});
+      fontSize: 18
+    }
+  }
+})
 
-export default function DevicesAutoComplete({ value, defaultClasses = {}, devices, label, onChange = () => null }) {
-  const classes = useStyles();
+export default function DevicesAutoComplete ({ value, defaultClasses = {}, devices, label, onChange = () => null }) {
+  const classes = useStyles()
 
   return (
     <Autocomplete
@@ -25,12 +25,12 @@ export default function DevicesAutoComplete({ value, defaultClasses = {}, device
       value={value}
       classes={{
         ...defaultClasses,
-        option: classes.option,
+        option: classes.option
       }}
       autoHighlight
       getOptionLabel={option => option['device-nick']}
       onChange={(_, newValue) => {
-        onChange(newValue);
+        onChange(newValue)
       }}
       renderOption={option => (
         <React.Fragment>
@@ -45,10 +45,10 @@ export default function DevicesAutoComplete({ value, defaultClasses = {}, device
           fullWidth
           inputProps={{
             ...params.inputProps,
-            autoComplete: 'Device nick', // disable autocomplete and autofill
+            autoComplete: 'Device nick' // disable autocomplete and autofill
           }}
         />
       )}
     />
-  );
+  )
 }

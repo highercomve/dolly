@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import { getStatePlatforms } from '../../../lib/device.helper';
-import { FormLabel } from '@material-ui/core';
+import React, { useState, useEffect } from 'react'
+import FormGroup from '@material-ui/core/FormGroup'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import Checkbox from '@material-ui/core/Checkbox'
+import { getStatePlatforms } from '../../../lib/device.helper'
+import { FormLabel } from '@material-ui/core'
 
-export default function DevicePlatformSelect({ revision = {}, device, onChange, label }) {
+export default function DevicePlatformSelect ({ revision = {}, device, onChange, label }) {
   const [platforms, setPlatforms] = useState({})
   useEffect(() => {
     if (revision && revision.state) {
@@ -27,7 +27,7 @@ export default function DevicePlatformSelect({ revision = {}, device, onChange, 
   if (platforms.length <= 0) {
     return (
       <div>
-        This device doesn't have any platform to clone
+        {`This device doesn't have any platform to clone`}
       </div>
     )
   }
@@ -43,7 +43,7 @@ export default function DevicePlatformSelect({ revision = {}, device, onChange, 
   }
 
   return (
-    <FormGroup justify="" style={{marginTop: '2em'}}>
+    <FormGroup justify="" style={{ marginTop: '2em' }}>
       {label && (
         <FormLabel style={{ textAlign: 'left' }}>
           {label}

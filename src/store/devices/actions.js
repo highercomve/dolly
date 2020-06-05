@@ -1,7 +1,7 @@
 import * as Types from './types'
 import * as Service from '../../services/devices.service'
-import { buildBasicActions } from "../../lib/redux.helper"
-import { processService } from "../../lib/api.helper"
+import { buildBasicActions } from '../../lib/redux.helper'
+import { processService } from '../../lib/api.helper'
 import { catchError } from '../general-errors/actions'
 import { getStatePlatformsFiltered } from '../../lib/device.helper'
 
@@ -30,7 +30,7 @@ const validateForm = (state) => {
   if (state.source !== null && state.destination !== null && state.source.deviceid === state.destination.deviceid) {
     errors.destionation = `Please select another destination device, the destination can't be the same as source`
   }
-  
+
   if (Object.keys(errors).length > 1) {
     errors.valid = false
   }
@@ -40,31 +40,31 @@ const validateForm = (state) => {
 
 export const setPlatformToClone = (payload) => ({
   type: Types.DEVICE_SET_PLATFORM_TO_CLONE,
-  payload,
+  payload
 })
 
 export const setDestination = (payload) => ({
   type: Types.DEVICES_SET_DESTINATION,
-  payload: payload,
+  payload: payload
 })
 
 export const setSource = (payload) => ({
   type: Types.DEVICES_SET_SOURCE,
-  payload: payload,
+  payload: payload
 })
 
 export const setCloneUserMeta = (payload) => ({
   type: Types.DEVICES_SET_CLONE_USER_META,
-  payload: payload,
+  payload: payload
 })
 
 export const setSelectedRevision = (payload) => ({
   type: Types.DEVICES_SET_REVISION,
-  payload: payload,
+  payload: payload
 })
 
 export const cleanForm = () => ({
-  type: Types.DEVICES_CLEAN_FORM,
+  type: Types.DEVICES_CLEAN_FORM
 })
 
 export const getDevices = () => async (dispatch, getState) => {
@@ -81,7 +81,7 @@ export const getDevices = () => async (dispatch, getState) => {
             d.revisions = trails.json.sort((a, b) => a.rev < b.rev)
             return d
           } catch (e) {
-            console.debug(e)
+            console.info(e)
             return d
           }
         })
@@ -140,7 +140,7 @@ export const cloneDevice = () => async (dispatch, getState) => {
   )
 
   if (state.devices.cloneUserMeta) {
-    console.info("TODO: Clone user-meta is not implemented yet")
+    console.info('TODO: Clone user-meta is not implemented yet')
   }
 
   return newTrail

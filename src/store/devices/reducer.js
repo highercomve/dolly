@@ -2,15 +2,15 @@ import * as Types from './types'
 import { buildBasicReducers } from '../../lib/redux.helper'
 
 export const STATUS = {
-  IN_PROGRESS: 'inprogr',
-  FAILURE: 'failure',
-  SUCCESS: 'success',
+  IN_PROGRESS: 'IN_PROGRESS',
+  FAILURE: 'FAILURE',
+  SUCCESS: 'SUCCESS',
   CLONING: {
-    IN_PROGRESS: 'IN_PROGRESS',
-    FAILURE: 'FAILURE',
-    SUCCESS: 'SUCCESS',
+    IN_PROGRESS: 'CLONING_IN_PROGRESS',
+    FAILURE: 'CLONING_FAILURE',
+    SUCCESS: 'CLONING_SUCCESS'
   },
-  WAITING_DEPLOY: 'WAITING_DEPLOY' 
+  WAITING_DEPLOY: 'WAITING_DEPLOY'
 }
 
 export const initialState = {
@@ -22,7 +22,7 @@ export const initialState = {
   selectedRevision: null,
   cloneUserMeta: false,
   platformToClone: null,
-  formErrors: {},
+  formErrors: {}
 }
 
 const mergeState = (state, action, successPrefix) => ({
@@ -44,7 +44,7 @@ const ActionMapper = {
   }),
   [Types.DEVICE_SET_PLATFORM_TO_CLONE]: (state, action) => ({
     ...state,
-    platformToClone: action.payload,
+    platformToClone: action.payload
   }),
   [Types.DEVICES_CLEAN_FORM]: (state) => ({
     ...state,
@@ -52,7 +52,7 @@ const ActionMapper = {
     destination: null,
     selectedRevision: null,
     cloneUserMeta: false
-  }),
+  })
 }
 
 export default function reducer (state = initialState, action) {

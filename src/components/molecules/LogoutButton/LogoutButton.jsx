@@ -1,19 +1,19 @@
-import React from "react";
-import { connect } from "react-redux";
-import { Logout } from "../../../store/auth/actions";
-import Fab from "@material-ui/core/Fab";
-import { makeStyles } from "@material-ui/core";
+import React from 'react'
+import { connect } from 'react-redux'
+import { Logout } from '../../../store/auth/actions'
+import Fab from '@material-ui/core/Fab'
+import { makeStyles } from '@material-ui/core'
 
 export const useStyles = makeStyles(theme => ({
   fab: {
     position: 'absolute',
     top: theme.spacing(2),
-    right: theme.spacing(2),
-  },
+    right: theme.spacing(2)
+  }
 }))
 
-export function LogoutButton({ token, Logout }) {
-  const classes = useStyles();
+export function LogoutButton ({ token, Logout }) {
+  const classes = useStyles()
 
   if (token === null) {
     return null
@@ -28,10 +28,10 @@ export function LogoutButton({ token, Logout }) {
       Log out
     </Fab>
   )
-} 
+}
 
 export default connect(state => ({
-  token: state.auth.token,
+  token: state.auth.token
 }), {
-  Logout,
+  Logout
 })(LogoutButton)

@@ -11,7 +11,7 @@ import Button from '@material-ui/core/Button'
 import DoubleArrowIcon from '@material-ui/icons/DoubleArrow'
 import Alert from '@material-ui/lab/Alert'
 
-import { useStyles } from "../../layouts/Main"
+import { useStyles } from '../../layouts/Main'
 import { STATUS as UserStatus } from '../../../store/auth/reducer'
 import { STATUS as DevicesStatus } from '../../../store/devices/reducer'
 import DevicesAutoComplete from '../../molecules/DevicesAutoComplete/DevicesAutoComplete'
@@ -58,7 +58,7 @@ function Clone ({
       setLoading(false)
     }
   }, [devices, devices.status])
-  
+
   if (devices.status === DevicesStatus.IN_PROGRESS) {
     return (
       <div className={classes.heroContent}>
@@ -69,7 +69,7 @@ function Clone ({
           <Typography variant="h5" align="center" color="textSecondary" paragraph>
             Please wait a second, first we need to load your devices.
           </Typography>
-          <div className={classes.flex} style={{height: '200px'}}>
+          <div className={classes.flex} style={{ height: '200px' }}>
             <Loader size="lg" />
           </div>
         </Container>
@@ -80,7 +80,7 @@ function Clone ({
   if (devices.list.length <= 0) {
     return null
   }
-  
+
   return (
     <div className={classes.heroContent}>
       <Container maxWidth="md">
@@ -162,8 +162,8 @@ function Clone ({
                     disabled={!devices.source || !devices.destination || !devices.selectedRevision}
                     dialogText={
                       !!devices.source && !!devices.destination && !!devices.selectedRevision
-                      ? `Are you sure you want to clone ${devices.source['device-nick']} (${devices.selectedRevision.rev}) to ${devices.destination['device-nick']}?`
-                      : ''
+                        ? `Are you sure you want to clone ${devices.source['device-nick']} (${devices.selectedRevision.rev}) to ${devices.destination['device-nick']}?`
+                        : ''
                     }
                     onConfirm={cloneDevice}
                   />
@@ -183,7 +183,7 @@ function Clone ({
 export default connect(
   (state) => ({
     devices: state.devices,
-    user: state.auth,
+    user: state.auth
   }),
   {
     getDevices,
