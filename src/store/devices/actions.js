@@ -53,6 +53,26 @@ export const setSource = (payload) => ({
   payload: payload
 })
 
+export const setSourceAndGetPublic = (payload) => async (dispatch, getState) => {
+  if (!payload) {
+    return dispatch(setSource(null))
+  }
+  const state = getState()
+  const alredyOnList = Object.keys(state.devices.list).some(
+    key => state.devices.list[key].deviceid === payload.deviceid
+  )
+
+  if (alredyOnList) {
+    return dispatch(setSource(payload))
+  }
+
+  return processService(
+    async () => dispatch(getDevice(payload.deviceid)),
+    (resp) => dispatch(setSource(resp)),
+    (error) => console.info(error)
+  )
+}
+
 export const setCloneUserMeta = (payload) => ({
   type: Types.DEVICES_SET_CLONE_USER_META,
   payload: payload
@@ -104,7 +124,7 @@ export const getDevice = (id) => async (dispatch, getState) => {
     async () => {
       const devicesResponse = await Service.getDeviceSummary(state.auth.token, id)
       const trails = await Service.getDeviceTrails(state.auth.token, id)
-      devicesResponse.json.trails = trails.json
+      devicesResponse.json.revisions = trails.json
       return devicesResponse
     },
     (resp) => dispatch(getDeviceActions.success(resp)),

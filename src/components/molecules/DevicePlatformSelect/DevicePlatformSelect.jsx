@@ -20,7 +20,7 @@ export default function DevicePlatformSelect ({ revision = {}, device, onChange,
     }, {}))
   }, [platforms, onChange])
 
-  if (!device || !revision.state) {
+  if (!device || !revision || !revision.state) {
     return null
   }
 

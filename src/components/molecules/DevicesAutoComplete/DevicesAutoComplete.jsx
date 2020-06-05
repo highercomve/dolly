@@ -1,6 +1,6 @@
 import React from 'react'
 import TextField from '@material-ui/core/TextField'
-import Autocomplete from '@material-ui/lab/Autocomplete'
+import Autocomplete, { createFilterOptions } from '@material-ui/lab/Autocomplete'
 import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles({
@@ -13,13 +13,17 @@ const useStyles = makeStyles({
   }
 })
 
+const filter = createFilterOptions()
+
 export default function DevicesAutoComplete ({ value, defaultClasses = {}, devices, label, onChange = () => null }) {
   const classes = useStyles()
 
   return (
     <Autocomplete
-      clearOnEscape
       id="devices-select"
+      clearOnEscape
+      freeSolo
+      autoHighlight
       style={{ width: '100%' }}
       options={devices}
       value={value}
@@ -27,8 +31,19 @@ export default function DevicesAutoComplete ({ value, defaultClasses = {}, devic
         ...defaultClasses,
         option: classes.option
       }}
-      autoHighlight
       getOptionLabel={option => option['device-nick']}
+      filterOptions={(options, params) => {
+        const filtered = filter(options, params)
+
+        if (params.inputValue !== '') {
+          filtered.push({
+            'device-nick': `Search ${params.inputValue} ...`,
+            deviceid: params.inputValue
+          })
+        }
+
+        return filtered
+      }}
       onChange={(_, newValue) => {
         onChange(newValue)
       }}

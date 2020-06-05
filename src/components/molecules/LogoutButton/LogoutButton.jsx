@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Logout } from '../../../store/auth/actions'
-import Fab from '@material-ui/core/Fab'
 import { makeStyles } from '@material-ui/core'
+import Button from '@material-ui/core/Button'
 
 export const useStyles = makeStyles(theme => ({
   fab: {
@@ -20,13 +20,13 @@ export function LogoutButton ({ token, Logout }) {
   }
 
   return (
-    <Fab
+    <Button
       className={classes.fab}
-      variant="extended"
+      variant="outlined"
       onClick={Logout}
     >
       Log out
-    </Fab>
+    </Button>
   )
 }
 

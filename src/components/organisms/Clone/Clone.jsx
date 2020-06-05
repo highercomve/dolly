@@ -18,7 +18,7 @@ import DevicesAutoComplete from '../../molecules/DevicesAutoComplete/DevicesAuto
 import ConfirmButton from '../../atoms/ConfirmButton/ConfirmButton'
 import {
   getDevices,
-  setSource,
+  setSourceAndGetPublic,
   setDestination,
   setCloneUserMeta,
   cleanForm,
@@ -34,7 +34,7 @@ function Clone ({
   user,
   devices,
   getDevices,
-  setSource,
+  setSourceAndGetPublic,
   setDestination,
   setCloneUserMeta,
   cleanForm,
@@ -97,7 +97,7 @@ function Clone ({
                 value={devices.source}
                 devices={Object.values(devices.list)}
                 label="Choose a device source"
-                onChange={setSource}
+                onChange={setSourceAndGetPublic}
               />
               <br />
               <DeviceRevisionSelect
@@ -187,7 +187,7 @@ export default connect(
   }),
   {
     getDevices,
-    setSource,
+    setSourceAndGetPublic,
     setDestination,
     setCloneUserMeta,
     cleanForm,
