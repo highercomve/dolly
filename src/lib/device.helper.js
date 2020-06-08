@@ -1,3 +1,20 @@
+function getPlatformSelection (platforms) {
+  return Object.keys(platforms).reduce((acc, key) => {
+    acc[key] = platforms[key].selected
+    return acc
+  }, {})
+}
+
+function mergeSelection (source, destination) {
+  return Object.keys(destination).reduce((acc, key) => {
+    if (source[key]) {
+      acc[key] = false
+    } else {
+      acc[key] = destination[key]
+    }
+    return acc
+  }, {})
+}
 
 export function getStatePlatforms (state, defaultSelection = false) {
   return Object.keys(state).reduce((acc, key, index) => {
@@ -16,7 +33,7 @@ export function getStatePlatforms (state, defaultSelection = false) {
 export function getStatePlatformsFiltered (state, platformsSelected = {}, onlyPlatforms = false) {
   const newState = onlyPlatforms ? {} : { ...state }
   Object.keys(platformsSelected).forEach((platformKey) => {
-    if (platformsSelected[platformKey].selected === false && !onlyPlatforms) {
+    if (platformsSelected[platformKey] === false && !onlyPlatforms) {
       Object.keys(newState).forEach((stateKey) => {
         if (stateKey.indexOf(platformKey) >= 0) {
           delete newState[stateKey]
@@ -24,7 +41,7 @@ export function getStatePlatformsFiltered (state, platformsSelected = {}, onlyPl
       })
     }
 
-    if (platformsSelected[platformKey].selected === true && onlyPlatforms) {
+    if (platformsSelected[platformKey] === true && onlyPlatforms) {
       Object.keys(state).forEach((stateKey) => {
         if (stateKey.indexOf(platformKey) >= 0) {
           newState[stateKey] = state[stateKey]
@@ -40,8 +57,11 @@ export function mergeToDestination (src, dest, completeClone = false) {
     return src
   }
 
-  const destPlatforms = getStatePlatforms(dest)
-  const srcPlatforms = getStatePlatforms(src, true)
+  const srcPlatforms = getPlatformSelection(getStatePlatforms(src, true))
+  const destPlatforms = mergeSelection(
+    srcPlatforms,
+    getPlatformSelection(getStatePlatforms(dest, true))
+  )
 
   const cleanDest = getStatePlatformsFiltered(dest, destPlatforms, false, true)
   const cleanSrc = getStatePlatformsFiltered(src, srcPlatforms, true)
@@ -50,6 +70,7 @@ export function mergeToDestination (src, dest, completeClone = false) {
     ...cleanDest,
     ...cleanSrc
   }
+
   return mergedState
 }
 
