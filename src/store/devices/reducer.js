@@ -1,5 +1,6 @@
 import * as Types from './types'
 import { buildBasicReducers } from '../../lib/redux.helper'
+import { getLatestRev } from '../../lib/device.helper'
 
 export const STATUS = {
   IN_PROGRESS: 'IN_PROGRESS',
@@ -19,9 +20,15 @@ export const initialState = {
   clone: null,
   source: null,
   destination: null,
-  selectedRevision: null,
+  selectedRevision: {
+    src: null,
+    dest: null
+  },
   cloneUserMeta: false,
-  platformToClone: null,
+  platformToClone: {
+    src: null,
+    dest: null
+  },
   formErrors: {}
 }
 
@@ -35,7 +42,11 @@ const ActionMapper = {
   ...buildBasicReducers(STATUS.CLONING, Types, Types.DEVICES_CLONE, 'clone', undefined, mergeState),
   [Types.DEVICES_SET_DESTINATION]: (s, a) => ({
     ...s,
-    destination: a.payload
+    destination: a.payload,
+    selectedRevision: {
+      ...s.selectedRevision,
+      dest: getLatestRev(a.payload)
+    }
   }),
   [Types.DEVICES_SET_CLONE_USER_META]: (s, a) => ({
     ...s,
@@ -47,20 +58,29 @@ const ActionMapper = {
   }),
   [Types.DEVICES_SET_REVISION]: (s, a) => ({
     ...s,
-    selectedRevision: a.payload
+    selectedRevision: {
+      ...s.selectedRevision,
+      [a.pointer]: a.payload
+    }
   }),
   [Types.DEVICES_SET_SOURCE]: (s, a) => ({
     ...s,
     source: !a.payload ? null : a.payload,
-    selectedRevision: !a.payload
-      ? null
-      : a.payload.revisions && a.payload.revisions.length
-        ? a.payload.revisions.find(r => r.rev === a.payload.revision)
-        : null
+    selectedRevision: {
+      ...s.selectedRevision,
+      src: !a.payload
+        ? null
+        : a.payload.revisions && a.payload.revisions.length
+          ? getLatestRev(a.payload)
+          : null
+    }
   }),
   [Types.DEVICE_SET_PLATFORM_TO_CLONE]: (state, action) => ({
     ...state,
-    platformToClone: action.payload
+    platformToClone: {
+      ...state.platformToClone,
+      [action.pointer]: action.payload
+    }
   }),
   [Types.DEVICES_CLEAN_FORM]: (state) => ({
     ...state,

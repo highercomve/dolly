@@ -40,7 +40,8 @@ function Clone ({
   cleanForm,
   setSelectedRevision,
   cloneDevice,
-  setPlatformToClone
+  setPlatformToClone,
+  setDestinationPlatformToClone
 }) {
   const classes = useStyles()
   const [loading, setLoading] = useState(false)
@@ -103,17 +104,17 @@ function Clone ({
               <DeviceRevisionSelect
                 className={classes.vertialSpace}
                 device={devices.source}
-                revision={devices.selectedRevision}
+                revision={devices.selectedRevision.src}
                 label="Choose revision source"
                 onChange={setSelectedRevision}
               />
               <DevicePlatformSelect
                 device={devices.source}
                 label="Select platforms to be cloned"
-                revision={devices.selectedRevision}
+                revision={devices.selectedRevision.src}
                 onChange={setPlatformToClone}
               />
-              {devices.selectedRevision && (
+              {devices.selectedRevision.src && (
                 <FormGroup justify="center">
                   <FormControlLabel
                     control={
@@ -142,6 +143,16 @@ function Clone ({
                 label="Choose a device destination"
                 onChange={setDestination}
               />
+              {devices.destination && (
+                <div className="mt-sm--2 mt--7">
+                  <DevicePlatformSelect
+                    device={devices.destination}
+                    label="Select platform you want to remove"
+                    revision={devices.selectedRevision.dest}
+                    onChange={setDestinationPlatformToClone}
+                  />
+                </div>
+              )}
             </Grid>
             <Grid item md={12}>
               {devices.status !== DevicesStatus.CLONING.SUCCESS && loading && (
@@ -158,11 +169,11 @@ function Clone ({
                   <ConfirmButton
                     variant="contained"
                     color="primary"
-                    buttonTxt="Start cloning process"
-                    disabled={!devices.source || !devices.destination || !devices.selectedRevision}
+                    buttonTxt="Start update process"
+                    disabled={!devices.source || !devices.destination || !devices.selectedRevision.src}
                     dialogText={
-                      !!devices.source && !!devices.destination && !!devices.selectedRevision
-                        ? `Are you sure you want to clone ${devices.source['device-nick']} (${devices.selectedRevision.rev}) to ${devices.destination['device-nick']}?`
+                      !!devices.source && !!devices.destination && !!devices.selectedRevision.src
+                        ? `Are you sure you want to clone ${devices.source['device-nick']} (${devices.selectedRevision.src.rev}) to ${devices.destination['device-nick']}?`
                         : ''
                     }
                     onConfirm={cloneDevice}
@@ -193,6 +204,7 @@ export default connect(
     cleanForm,
     setSelectedRevision,
     cloneDevice,
-    setPlatformToClone
+    setPlatformToClone,
+    setDestinationPlatformToClone: (payload) => setPlatformToClone(payload, 'dest')
   }
 )(Clone)

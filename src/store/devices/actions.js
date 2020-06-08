@@ -3,7 +3,7 @@ import * as Service from '../../services/devices.service'
 import { buildBasicActions } from '../../lib/redux.helper'
 import { processService } from '../../lib/api.helper'
 import { catchError } from '../general-errors/actions'
-import { getStatePlatformsFiltered } from '../../lib/device.helper'
+import { getStatePlatformsFiltered, mergeToDestination } from '../../lib/device.helper'
 
 const getDevicesActions = buildBasicActions(Types, Types.DEVICES_GET_ALL)
 const getDeviceActions = buildBasicActions(Types, Types.DEVICES_GET)
@@ -38,14 +38,16 @@ const validateForm = (state) => {
   return errors
 }
 
-export const setPlatformToClone = (payload) => ({
+export const setPlatformToClone = (payload, pointer = 'src') => ({
   type: Types.DEVICE_SET_PLATFORM_TO_CLONE,
-  payload
+  payload,
+  pointer
 })
 
-export const setDestination = (payload) => ({
+export const setDestination = (payload, pointer = 'src') => ({
   type: Types.DEVICES_SET_DESTINATION,
-  payload: payload
+  payload,
+  pointer
 })
 
 export const setSource = (payload) => ({
@@ -147,10 +149,18 @@ export const cloneDevice = () => async (dispatch, getState) => {
     return
   }
 
+  const selectSrcState = getStatePlatformsFiltered(
+    state.devices.selectedRevision.src.state,
+    state.devices.platformToClone.src
+  )
+  const selectedDestState = getStatePlatformsFiltered(
+    state.devices.selectedRevision.dest.state,
+    state.devices.platformToClone.dest
+  )
   const payload = {
-    state: getStatePlatformsFiltered(state.devices.selectedRevision.state, state.devices.platformToClone),
+    state: mergeToDestination(selectSrcState, selectedDestState),
     rev: -1,
-    'commit-msg': `Cloned from device ${state.devices.source['device-nick']} rev (${state.devices.selectedRevision.rev})`
+    'commit-msg': `Cloned from device ${state.devices.source['device-nick']} rev (${state.devices.selectedRevision.src.rev})`
   }
 
   const newTrail = await processService(

@@ -1,10 +1,11 @@
 import React from 'react'
-import './App.css'
 import MainLayout from './components/layouts/Main'
 import Clone from './components/organisms/Clone/Clone'
 import { Provider } from 'react-redux'
 import CreateStore from './store'
 import IsAuthenticated from './components/atoms/IsAuthenticated/IsAuthenticated'
+
+import './App.scss'
 
 const store = CreateStore()
 

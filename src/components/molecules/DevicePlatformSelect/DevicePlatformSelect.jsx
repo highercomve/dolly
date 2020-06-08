@@ -7,6 +7,7 @@ import { FormLabel } from '@material-ui/core'
 
 export default function DevicePlatformSelect ({ revision = {}, device, onChange, label }) {
   const [platforms, setPlatforms] = useState({})
+
   useEffect(() => {
     if (revision && revision.state) {
       setPlatforms(getStatePlatforms(revision.state, true))
