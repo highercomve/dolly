@@ -60,16 +60,17 @@ export const setSourceAndGetPublic = (payload) => async (dispatch, getState) => 
     return dispatch(setSource(null))
   }
   const state = getState()
-  const alredyOnList = Object.keys(state.devices.list).some(
+  const alreadyOnList = Object.keys(state.devices.list).some(
     key => state.devices.list[key].deviceid === payload.deviceid
   )
 
-  if (alredyOnList) {
+  if (alreadyOnList) {
     return dispatch(setSource(payload))
   }
 
+  const getDeviceService = payload.deviceid.indexOf('/') >= 0 ? getDeviceByNick : getDevice
   return processService(
-    async () => dispatch(getDevice(payload.deviceid)),
+    async () => dispatch(getDeviceService(payload.deviceid)),
     (resp) => dispatch(setSource(resp)),
     (error) => console.info(error)
   )
@@ -126,6 +127,23 @@ export const getDevice = (id) => async (dispatch, getState) => {
     async () => {
       const devicesResponse = await Service.getDeviceSummary(state.auth.token, id)
       const trails = await Service.getDeviceTrails(state.auth.token, id)
+      devicesResponse.json.revisions = trails.json
+      return devicesResponse
+    },
+    (resp) => dispatch(getDeviceActions.success(resp)),
+    (error) => dispatch(catchError(error, getDeviceActions.failure))
+  )
+}
+
+export const getDeviceByNick = (deviceNick) => async (dispatch, getState) => {
+  dispatch(getDeviceActions.inProgress())
+  const state = getState()
+
+  return processService(
+    async () => {
+      const deviceData = await Service.getDeviceByNick(state.auth.token, deviceNick)
+      const devicesResponse = await Service.getDeviceSummary(state.auth.token, deviceData.json.id)
+      const trails = await Service.getDeviceTrails(state.auth.token, deviceData.json.id)
       devicesResponse.json.revisions = trails.json
       return devicesResponse
     },

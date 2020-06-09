@@ -28,3 +28,6 @@ export const setDeviceMetadata = async (token, id, meta, type = 'user-meta') =>
 
 export const getDeviceTrails = async (token, id) =>
   _getJSON(trailsUrl(id) + '?progress.status={%22$ne%22:%22%22}', token)
+
+export const getDeviceByNick = async (token, devicenick) =>
+  _getJSON(`${DEVS_URL}/np/${devicenick}`, token)
