@@ -147,7 +147,7 @@ function Clone ({
                 <div className="mt-sm--2 mt--7">
                   <DevicePlatformSelect
                     device={devices.destination}
-                    label="Select platform you want to remove"
+                    label="Select platforms you want to keep"
                     revision={devices.selectedRevision.dest}
                     onChange={setDestinationPlatformToClone}
                   />

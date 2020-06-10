@@ -81,9 +81,10 @@ export const setCloneUserMeta = (payload) => ({
   payload: payload
 })
 
-export const setSelectedRevision = (payload) => ({
+export const setSelectedRevision = (payload, pointer = 'src') => ({
   type: Types.DEVICES_SET_REVISION,
-  payload: payload
+  payload,
+  pointer
 })
 
 export const cleanForm = () => ({
