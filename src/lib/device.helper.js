@@ -18,7 +18,7 @@ function mergeSelection (source, destination) {
 
 export function getStatePlatforms (state, defaultSelection = false) {
   return Object.keys(state).reduce((acc, key, index) => {
-    if (key.indexOf('src.json') >= 0) {
+    if (key.indexOf('src.json') >= 0 || key.indexOf('_config') >= 0) {
       const name = key.replace('/src.json', '')
       acc[name] = {
         ...state[key],
