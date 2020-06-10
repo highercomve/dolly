@@ -20,11 +20,11 @@ export const initialState = {
   clone: null,
   source: null,
   destination: null,
+  cloneUserMeta: false,
   selectedRevision: {
     src: null,
     dest: null
   },
-  cloneUserMeta: false,
   platformToClone: {
     src: null,
     dest: null
@@ -83,11 +83,8 @@ const ActionMapper = {
     }
   }),
   [Types.DEVICES_CLEAN_FORM]: (state) => ({
-    ...state,
-    source: null,
-    destination: null,
-    selectedRevision: null,
-    cloneUserMeta: false
+    ...initialState,
+    list: state.list
   })
 }
 
