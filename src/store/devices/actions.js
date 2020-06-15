@@ -4,6 +4,7 @@ import { buildBasicActions } from '../../lib/redux.helper'
 import { processService } from '../../lib/api.helper'
 import { catchError } from '../general-errors/actions'
 import { getStatePlatformsFiltered, mergeToDestination } from '../../lib/device.helper'
+import { resolvePath } from '../../lib/utils.helper'
 
 const getDevicesActions = buildBasicActions(Types, Types.DEVICES_GET_ALL)
 const getDeviceActions = buildBasicActions(Types, Types.DEVICES_GET)
@@ -97,11 +98,16 @@ export const getDevices = () => async (dispatch, getState) => {
 
   return processService(
     async () => {
+      const devicesSummaryResponse = await Service.getDevicesSummary(state.auth.token)
       const devicesResponse = await Service.getDevices(state.auth.token)
       const devices = await Promise.all(
-        devicesResponse.json.map(async (d) => {
+        devicesSummaryResponse.json.map(async (d) => {
           try {
             const trails = await Service.getDeviceTrails(state.auth.token, d.deviceid)
+            const device = resolvePath(devicesResponse, 'json', []).find((_d) => _d.id === d.deviceid)
+            if (device) {
+              Object.assign(d, device)
+            }
             d.revisions = trails.json.sort((a, b) => a.rev < b.rev)
             return d
           } catch (e) {
@@ -111,7 +117,7 @@ export const getDevices = () => async (dispatch, getState) => {
         })
       )
       return {
-        ...devicesResponse,
+        ...devicesSummaryResponse,
         json: devices
       }
     },

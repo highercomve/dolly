@@ -29,6 +29,14 @@ import {
 import DeviceRevisionSelect from '../../molecules/DeviceRevisionSelect/DeviceRevisionSelect'
 import Loader from '../../atoms/Loader/Loader'
 import DevicePlatformSelect from '../../molecules/DevicePlatformSelect/DevicePlatformSelect'
+import { resolvePath } from '../../../lib/utils.helper'
+
+const filterDeviceByArch = (source) => (device) => {
+  return !resolvePath(device, 'device-meta', {})['pantavisor.arch']
+    ? true
+    : resolvePath(source, 'device-meta', {})['pantavisor.arch'] ===
+      resolvePath(device, 'device-meta', {})['pantavisor.arch']
+}
 
 function Clone ({
   user,
@@ -139,7 +147,7 @@ function Clone ({
             <Grid item md={5} xs={12}>
               <DevicesAutoComplete
                 value={devices.destination}
-                devices={Object.values(devices.list)}
+                devices={Object.values(devices.list).filter(filterDeviceByArch(devices.source))}
                 label="Choose a device destination"
                 onChange={setDestination}
               />

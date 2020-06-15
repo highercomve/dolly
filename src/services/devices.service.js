@@ -17,8 +17,11 @@ const tailsDeviceSummaryUrl = (id) =>
 export const getDeviceSummary = async (token, id) =>
   _getJSON(tailsDeviceSummaryUrl(id), token)
 
-export const getDevices = async (token) =>
+export const getDevicesSummary = async (token) =>
   _getJSON(SUMMARY_URL, token)
+
+export const getDevices = async (token) =>
+  _getJSON(DEVS_URL + '/', token)
 
 export const postTrails = async (token, id, payload) =>
   _postJSON(trailsUrl(id), token, payload)

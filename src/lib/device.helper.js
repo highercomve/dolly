@@ -1,3 +1,5 @@
+import { resolvePath } from './utils.helper'
+
 function getPlatformSelection (platforms) {
   return Object.keys(platforms).reduce((acc, key) => {
     acc[key] = platforms[key].selected
@@ -74,7 +76,7 @@ export function mergeToDestination (src, dest, completeClone = false) {
   return mergedState
 }
 
-export function getLatestRev (device) {
-  return device.revisions.find(r => r.rev === device.revision)
+export function getLatestRev (device = {}) {
+  return resolvePath(device, 'revisions', []).find(r => r.rev === device.revision)
   // return device.revisions.find(rev => resolvePath(rev, 'progress.status', '') === 'DONE')
 }
