@@ -9,7 +9,9 @@ function getPlatformSelection (platforms) {
 
 function mergeSelection (source, destination) {
   return Object.keys(destination).reduce((acc, key) => {
-    if (source[key]) {
+    if (key.indexOf('_config') >= 0) {
+      acc[key] = true
+    } else if (source[key]) {
       acc[key] = false
     } else {
       acc[key] = destination[key]
@@ -37,7 +39,7 @@ export function getStatePlatformsFiltered (state, platformsSelected = {}, onlyPl
   Object.keys(platformsSelected).forEach((platformKey) => {
     if (platformsSelected[platformKey] === false && !onlyPlatforms) {
       Object.keys(newState).forEach((stateKey) => {
-        if (stateKey.indexOf(platformKey) >= 0) {
+        if (stateKey.indexOf(platformKey) === 0) {
           delete newState[stateKey]
         }
       })
@@ -45,7 +47,7 @@ export function getStatePlatformsFiltered (state, platformsSelected = {}, onlyPl
 
     if (platformsSelected[platformKey] === true && onlyPlatforms) {
       Object.keys(state).forEach((stateKey) => {
-        if (stateKey.indexOf(platformKey) >= 0) {
+        if (stateKey.indexOf(platformKey) === 0) {
           newState[stateKey] = state[stateKey]
         }
       })
@@ -58,19 +60,18 @@ export function mergeToDestination (src, dest, completeClone = false) {
   if (completeClone) {
     return src
   }
-
   const srcPlatforms = getPlatformSelection(getStatePlatforms(src, true))
   const destPlatforms = mergeSelection(
     srcPlatforms,
     getPlatformSelection(getStatePlatforms(dest, true))
   )
 
-  const cleanDest = getStatePlatformsFiltered(dest, destPlatforms, false, true)
+  const cleanDest = getStatePlatformsFiltered(dest, destPlatforms, false)
   const cleanSrc = getStatePlatformsFiltered(src, srcPlatforms, true)
 
   const mergedState = {
-    ...cleanDest,
-    ...cleanSrc
+    ...cleanSrc,
+    ...cleanDest
   }
 
   return mergedState

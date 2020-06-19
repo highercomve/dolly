@@ -28,10 +28,6 @@ const validateForm = (state) => {
     errors.destination = 'You need to be owner of the destination device'
   }
 
-  if (state.source !== null && state.destination !== null && state.source.deviceid === state.destination.deviceid) {
-    errors.destionation = `Please select another destination device, the destination can't be the same as source`
-  }
-
   if (Object.keys(errors).length > 1) {
     errors.valid = false
   }
@@ -182,6 +178,7 @@ export const cloneDevice = () => async (dispatch, getState) => {
     state.devices.selectedRevision.dest.state,
     state.devices.platformToClone.dest
   )
+
   const payload = {
     state: mergeToDestination(selectSrcState, selectedDestState),
     rev: -1,
