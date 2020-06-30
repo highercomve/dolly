@@ -31,8 +31,10 @@ import Loader from '../../atoms/Loader/Loader'
 import DevicePlatformSelect from '../../molecules/DevicePlatformSelect/DevicePlatformSelect'
 import { resolvePath } from '../../../lib/utils.helper'
 
+// if both devices have an arch in meta we can filter...
 const filterDeviceByArch = (source) => (device) => {
   return !resolvePath(device, 'device-meta', {})['pantavisor.arch']
+	|| !resolvePath(source, 'device-meta', {})['pantavisor.arch']
     ? true
     : resolvePath(source, 'device-meta', {})['pantavisor.arch'] ===
       resolvePath(device, 'device-meta', {})['pantavisor.arch']
