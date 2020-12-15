@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "dff009f3e1f4a3035bc0df6beb18c43b",
+    "revision": "0e639078d283bf2aa4eeb83d7306df7c",
     "url": "/dolly/index.html"
   },
   {
-    "revision": "a8e981ea1b02a9ca5b99",
+    "revision": "1ad7a778d3e4d9292ea7",
     "url": "/dolly/static/css/main.1979d274.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/dolly/static/js/2.6cd5be28.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "a8e981ea1b02a9ca5b99",
-    "url": "/dolly/static/js/main.a5024287.chunk.js"
+    "revision": "1ad7a778d3e4d9292ea7",
+    "url": "/dolly/static/js/main.0027173a.chunk.js"
   },
   {
     "revision": "e9bd9971f0e755ea8429",
