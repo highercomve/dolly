@@ -21,4 +21,6 @@ jobs:
       env:
         PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
       run: |
+        git config user.email "deployment@higher.com.ve"
+        git config user.name "Sergio Marin"
         npm run deploy
