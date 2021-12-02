@@ -1,6 +1,6 @@
 import React from 'react'
 import MainLayout from './components/layouts/Main'
-import Clone from './components/organisms/Clone/Clone'
+import Clone from './components/Pages/Clone/Clone'
 import { Provider } from 'react-redux'
 import CreateStore from './store'
 import IsAuthenticated from './components/atoms/IsAuthenticated/IsAuthenticated'
