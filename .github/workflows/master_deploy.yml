@@ -21,7 +21,9 @@ jobs:
       env:
         PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
       run: |
+        git init
         git config --global user.email "higher.vnf@gmail.com"
         git config --global user.name "Sergio Marin"
         git remote add origin https://highercomve:${PERSONAL_TOKEN}@github.com/highercomve/dolly.git
+        git pull origin master
         npm run deploy
