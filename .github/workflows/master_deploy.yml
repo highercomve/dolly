@@ -20,11 +20,6 @@ jobs:
     - name: Build 
       env:
         PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
-      run: |
-        npm run build
-    - name: Deploy
-      uses: peaceiris/actions-gh-pages@v3
-      env:
         REACT_APP_TITLE: "Dolly -- Pantahub Device Tools"
         REACT_APP_PH_API_URL: https://api.pantahub.com
         REACT_APP_PH_URL: https://hub.pantacor.com
@@ -32,6 +27,10 @@ jobs:
         REACT_APP_OAUTH_DEFAULT_SCOPE: prn:pantahub.com:apis:/base/user.readonly
         REACT_APP_REFRESH_TIME: 5000
         REACT_APP_REDUX_DEBUG: false
+      run: |
+        npm run build
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./build
