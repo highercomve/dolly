@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/dolly/static/css/main.1979d274.chunk.css",
-    "main.js": "/dolly/static/js/main.0027173a.chunk.js",
-    "main.js.map": "/dolly/static/js/main.0027173a.chunk.js.map",
-    "runtime-main.js": "/dolly/static/js/runtime-main.64f4c6c8.js",
-    "runtime-main.js.map": "/dolly/static/js/runtime-main.64f4c6c8.js.map",
-    "static/js/2.6cd5be28.chunk.js": "/dolly/static/js/2.6cd5be28.chunk.js",
-    "static/js/2.6cd5be28.chunk.js.map": "/dolly/static/js/2.6cd5be28.chunk.js.map",
+    "main.js": "/dolly/static/js/main.412fae00.chunk.js",
+    "main.js.map": "/dolly/static/js/main.412fae00.chunk.js.map",
+    "runtime-main.js": "/dolly/static/js/runtime-main.3ca615e9.js",
+    "runtime-main.js.map": "/dolly/static/js/runtime-main.3ca615e9.js.map",
+    "static/js/2.3c9d3beb.chunk.js": "/dolly/static/js/2.3c9d3beb.chunk.js",
+    "static/js/2.3c9d3beb.chunk.js.map": "/dolly/static/js/2.3c9d3beb.chunk.js.map",
     "index.html": "/dolly/index.html",
-    "precache-manifest.1970828228ba9691877ddab9b5c59782.js": "/dolly/precache-manifest.1970828228ba9691877ddab9b5c59782.js",
+    "precache-manifest.3fe72df321963f602308ac65f6edc21d.js": "/dolly/precache-manifest.3fe72df321963f602308ac65f6edc21d.js",
     "service-worker.js": "/dolly/service-worker.js",
     "static/css/main.1979d274.chunk.css.map": "/dolly/static/css/main.1979d274.chunk.css.map",
-    "static/js/2.6cd5be28.chunk.js.LICENSE.txt": "/dolly/static/js/2.6cd5be28.chunk.js.LICENSE.txt"
+    "static/js/2.3c9d3beb.chunk.js.LICENSE.txt": "/dolly/static/js/2.3c9d3beb.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.64f4c6c8.js",
-    "static/js/2.6cd5be28.chunk.js",
+    "static/js/runtime-main.3ca615e9.js",
+    "static/js/2.3c9d3beb.chunk.js",
     "static/css/main.1979d274.chunk.css",
-    "static/js/main.0027173a.chunk.js"
+    "static/js/main.412fae00.chunk.js"
   ]
 }
