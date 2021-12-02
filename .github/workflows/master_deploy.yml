@@ -17,10 +17,13 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Install Packages
       run: npm install
-    - name: Deploy to GH Pages
+    - name: Build 
       env:
         PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
       run: |
-        git config user.email "deployment@higher.com.ve"
-        git config user.name "Sergio Marin"
-        npm run deploy
+        npm run build
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.PERSONAL_TOKEN }}
+        publish_dir: ./build
