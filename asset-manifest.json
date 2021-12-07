@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/dolly/static/css/main.8ef0dfdb.chunk.css",
+    "main.css": "/dolly/static/css/main.0bd9c5b4.chunk.css",
     "main.js": "/dolly/static/js/main.6d264bd5.chunk.js",
     "main.js.map": "/dolly/static/js/main.6d264bd5.chunk.js.map",
     "runtime-main.js": "/dolly/static/js/runtime-main.5586bf31.js",
@@ -8,13 +8,13 @@
     "static/js/2.25ccf6ae.chunk.js": "/dolly/static/js/2.25ccf6ae.chunk.js",
     "static/js/2.25ccf6ae.chunk.js.map": "/dolly/static/js/2.25ccf6ae.chunk.js.map",
     "index.html": "/dolly/index.html",
-    "static/css/main.8ef0dfdb.chunk.css.map": "/dolly/static/css/main.8ef0dfdb.chunk.css.map",
+    "static/css/main.0bd9c5b4.chunk.css.map": "/dolly/static/css/main.0bd9c5b4.chunk.css.map",
     "static/js/2.25ccf6ae.chunk.js.LICENSE.txt": "/dolly/static/js/2.25ccf6ae.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.5586bf31.js",
     "static/js/2.25ccf6ae.chunk.js",
-    "static/css/main.8ef0dfdb.chunk.css",
+    "static/css/main.0bd9c5b4.chunk.css",
     "static/js/main.6d264bd5.chunk.js"
   ]
 }
