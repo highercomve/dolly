@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/dolly/static/css/main.0bd9c5b4.chunk.css",
-    "main.js": "/dolly/static/js/main.6d264bd5.chunk.js",
-    "main.js.map": "/dolly/static/js/main.6d264bd5.chunk.js.map",
-    "runtime-main.js": "/dolly/static/js/runtime-main.5586bf31.js",
-    "runtime-main.js.map": "/dolly/static/js/runtime-main.5586bf31.js.map",
-    "static/js/2.25ccf6ae.chunk.js": "/dolly/static/js/2.25ccf6ae.chunk.js",
-    "static/js/2.25ccf6ae.chunk.js.map": "/dolly/static/js/2.25ccf6ae.chunk.js.map",
+    "main.js": "/dolly/static/js/main.b6de835d.chunk.js",
+    "main.js.map": "/dolly/static/js/main.b6de835d.chunk.js.map",
+    "runtime-main.js": "/dolly/static/js/runtime-main.b97415a2.js",
+    "runtime-main.js.map": "/dolly/static/js/runtime-main.b97415a2.js.map",
+    "static/js/2.55a808ec.chunk.js": "/dolly/static/js/2.55a808ec.chunk.js",
+    "static/js/2.55a808ec.chunk.js.map": "/dolly/static/js/2.55a808ec.chunk.js.map",
     "index.html": "/dolly/index.html",
     "static/css/main.0bd9c5b4.chunk.css.map": "/dolly/static/css/main.0bd9c5b4.chunk.css.map",
-    "static/js/2.25ccf6ae.chunk.js.LICENSE.txt": "/dolly/static/js/2.25ccf6ae.chunk.js.LICENSE.txt"
+    "static/js/2.55a808ec.chunk.js.LICENSE.txt": "/dolly/static/js/2.55a808ec.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.5586bf31.js",
-    "static/js/2.25ccf6ae.chunk.js",
+    "static/js/runtime-main.b97415a2.js",
+    "static/js/2.55a808ec.chunk.js",
     "static/css/main.0bd9c5b4.chunk.css",
-    "static/js/main.6d264bd5.chunk.js"
+    "static/js/main.b6de835d.chunk.js"
   ]
 }
